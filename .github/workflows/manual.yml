@@ -1,0 +1,18 @@
+name: PRs auto merge
+
+on:
+  schedule:
+    # Every day every 2 minutes
+    - cron: "5 * * * *"
+
+jobs:
+  pr-automerge:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: davideviolante/pr-automerge-action@v1.2.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        merge-method: 'merge' 
+        min-approvals: 0 
+        base-ref: 'main' 
